@@ -31,27 +31,63 @@ export default function DokterPage() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold mb-4">🧑‍⚕️ Data Dokter</h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 mb-6">
-        <input type="text" placeholder="Nama" value={form.nama} onChange={(e)=>setForm({...form,nama:e.target.value})} className="border p-2 rounded" required />
-        <input type="text" placeholder="Spesialis" value={form.spesialis} onChange={(e)=>setForm({...form,spesialis:e.target.value})} className="border p-2 rounded" required />
-        <input type="text" placeholder="No STR" value={form.no_str} onChange={(e)=>setForm({...form,no_str:e.target.value})} className="border p-2 rounded" required />
-        <input type="text" placeholder="No HP" value={form.no_hp} onChange={(e)=>setForm({...form,no_hp:e.target.value})} className="border p-2 rounded" required />
-        <button type="submit" className="col-span-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Tambah Dokter</button>
-      </form>
-      <CrudTable
-        data={data}
-        columns={[
-          { key: "dokter_id", label: "ID" },
-          { key: "nama", label: "Nama" },
-          { key: "spesialis", label: "Spesialis" },
-          { key: "no_str", label: "No STR" },
-          { key: "no_hp", label: "No HP" },
-        ]}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-      />
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-6 text-white shadow-xl">
+        <h2 className="text-3xl font-bold flex items-center gap-3">
+          <span className="text-4xl">👨‍⚕️</span>
+          Data Dokter
+        </h2>
+        <p className="mt-2 text-green-100">Kelola informasi dokter dan tenaga medis</p>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-xl p-6">
+        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <span>➕</span>
+          Tambah Dokter Baru
+        </h3>
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Nama Dokter</label>
+            <input type="text" placeholder="Masukkan nama" value={form.nama} onChange={(e)=>setForm({...form,nama:e.target.value})} className="border-2 border-gray-300 p-3 w-full rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" required />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Spesialis</label>
+            <input type="text" placeholder="Contoh: Umum, Gigi, Anak" value={form.spesialis} onChange={(e)=>setForm({...form,spesialis:e.target.value})} className="border-2 border-gray-300 p-3 w-full rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" required />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">No. STR</label>
+            <input type="text" placeholder="Nomor STR" value={form.no_str} onChange={(e)=>setForm({...form,no_str:e.target.value})} className="border-2 border-gray-300 p-3 w-full rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" required />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">No. HP</label>
+            <input type="text" placeholder="Nomor HP" value={form.no_hp} onChange={(e)=>setForm({...form,no_hp:e.target.value})} className="border-2 border-gray-300 p-3 w-full rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all" required />
+          </div>
+          <button type="submit" className="col-span-full bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-green-800 font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <span>➕</span> Tambah Dokter
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-xl font-bold text-gray-800">Daftar Dokter</h3>
+          <div className="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-semibold">
+            Total: {data.length} dokter
+          </div>
+        </div>
+        <CrudTable
+          data={data}
+          columns={[
+            { key: "dokter_id", label: "ID" },
+            { key: "nama", label: "Nama" },
+            { key: "spesialis", label: "Spesialis" },
+            { key: "no_str", label: "No STR" },
+            { key: "no_hp", label: "No HP" },
+          ]}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
+      </div>
     </div>
   );
 }

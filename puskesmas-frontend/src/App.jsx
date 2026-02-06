@@ -5,6 +5,7 @@ import PoliPage from "./pages/PoliPage";
 import KunjunganPage from "./pages/KunjunganPage";
 import ObatPage from "./pages/ObatPage";
 import ResepPage from "./pages/ResepPage";
+import HomePage from "./pages/HomePage";
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
 
         <div className="p-6">
           <Routes>
-            <Route path="/" element={<h2 className="text-xl">Selamat Datang di Sistem Puskesmas</h2>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/pasien" element={<PasienPage />} />
             <Route path="/dokter" element={<DokterPage />} />
             <Route path="/poli" element={<PoliPage />} />
